@@ -23,10 +23,7 @@ public class ReadingRecBean implements Serializable{
     
   }
   
-  //本の登録数
-  public ReadingRecBean(int readStatusLength) { 
-	  this.readStatusLength = readStatusLength;
-  }
+  
 
   //ゲッターとセッター
   public String getTitle() { return title; }
