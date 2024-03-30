@@ -12,7 +12,7 @@ public class RePassDAO {
   // データベース接続に使用する情報
   private final String JDBC_URL = "jdbc:mysql://localhost:3306/yonda";
   private final String DB_USER = "root";
-  private final String DB_PASS = "adminadmin";
+  private final String DB_PASS = "moo0921too";
 
   
   public void rePass(AccountBean account, AccountBean account2) {

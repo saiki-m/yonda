@@ -1,8 +1,9 @@
+<%--「スッキリわかるサーブレット＆JSP入門」P300のコード10-15を参考 --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="beans.ReadingRecBean" %>    
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List"%>   
+<%@ page import="beans.ReadingRecBean" %>
+<%@ page import="java.util.List"%>
     
 <%
 //セッションスコープに保存されたデータを取得
@@ -55,68 +56,21 @@
 		        <th>読書状況</th>
 		    </tr>
 		    
-		    <%for(int i = 0; i < readingRecList.size(); i++){%>
-	            <%ReadingRecBean book = (ReadingRecBean)readingRecList.get(i);%>
+		    <tr>
+		        <td><a href="readingRec.jsp">容疑者Xの献身</a></td>
+		        <td>東野圭吾</td>
+		        <td>感想を書いた</td>
+		    </tr>
+		    
+		    <%-- dbフォルダ内の「ReadingStatus.sql」のVALUESが表示される --%>
+		    <%for(ReadingRecBean book : readingRecList){ %>
 	            <tr>
 	                <td><%=book.getTitle()%></td>
 	                <td><%=book.getAuthor()%></td>
 	                <td><%=book.getReadStatus()%></td>
 		        </tr>
 	        <% } %>
-	        
-			<tr>
-		        <td><a href="readingRec.jsp">容疑者Xの献身</a></td>
-		        <td>東野圭吾</td>
-		        <td>感想を書いた</td>
-		    </tr>
 		    
-		    <tr>
-		        <td>傲慢と善良</td>
-		        <td>辻村深月</td>
-		        <td>いま読んでいる</td>
-		    </tr>
-		    
-		    
-		    
-		    <tr>
-		        <td>告白</td>
-		        <td>湊かなえ</td>
-		        <td>読み終わった</td>
-		    </tr>
-		    <tr>
-		        <td>キャッチャー・イン・ザ・ライ</td>
-		        <td>J・D・サリンジャー</td>
-		        <td>いま読んでいる</td>
-		    </tr>
-		    <tr>
-		        <td>老人と海</td>
-		        <td>アーネスト・ヘミングウェイ</td>
-		        <td>積読</td>
-		    </tr>
-		    <tr>
-		        <td>沈黙</td>
-		        <td>遠藤周作</td>
-		        <td>感想を書いた</td>
-		    </tr>
-		    <tr>
-		        <td>わかったさんのクッキー</td>
-		        <td>寺村輝夫</td>
-		        <td>読み終わった</td>
-		    <tr>
-		        <td>星の王子さま</td>
-		        <td>アントワーヌ・ド・サン＝テグジュペリ</td>
-		        <td>感想を書いた</td>
-		    </tr>
-		    <tr>
-		        <td>戦争は女の顔をしていない</td>
-		        <td>スヴェトラーナ・アレクシエーヴィチ</td>
-		        <td>読み終わった</td>
-		    </tr>
-		    <tr>
-		        <td>夜明けのすべて</td>
-		        <td>瀬尾まいこ</td>
-		        <td>読みたい</td>
-		    </tr>
 		</table>
 		
 	<a href="readingRecAdd.jsp" class="btn">本を追加</a><br>

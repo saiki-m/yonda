@@ -48,9 +48,11 @@ public class Login extends HttpServlet {
     	HttpSession session = request.getSession();
     	session.setAttribute("account", account);
     	
+    	//本棚に表示する読書記録の一覧を取得。
     	ReadingRecAddDAO dao2 = new ReadingRecAddDAO();
     	List<ReadingRecBean> readingRecList = dao2.findAll();
     	
+    	//bookShelf.jspで使うため、セッションスコープに保存。
     	HttpSession session2 = request.getSession();
     	session2.setAttribute("readingRecList", readingRecList);
     	

@@ -1,3 +1,5 @@
+//「スッキリわかるサーブレット＆JSP入門」P298のコード10-14、55行目～69行目参考
+
 package servlet;
 
 import java.io.IOException;
