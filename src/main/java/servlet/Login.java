@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 	//アカウントIDが見つかったとき
     //ログイン成功
     else {
-    	//セッションスコープに保存。 myPage.jspや本棚でEL式を使うため。
+    	//セッションスコープに保存。 マイページや本棚でEL式を使うため。
     	HttpSession session = request.getSession();
     	session.setAttribute("account", account);
     	
@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
     	ReadingRecAddDAO dao2 = new ReadingRecAddDAO();
     	List<ReadingRecBean> readingRecList = dao2.findAll();
     	
-    	//bookShelf.jspで使うため、セッションスコープに保存。
+    	//「bookShelf.jsp」、「ReadingRecAdd.java」で使うため、セッションスコープに保存。
     	HttpSession session2 = request.getSession();
     	session2.setAttribute("readingRecList", readingRecList);
     	

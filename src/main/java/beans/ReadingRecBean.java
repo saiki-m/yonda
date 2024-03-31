@@ -10,7 +10,6 @@ public class ReadingRecBean implements Serializable{
   private String title;
   private String author;
   private String readStatus;
-  private int readStatusLength;
   
   
   public ReadingRecBean() { }
@@ -34,9 +33,6 @@ public class ReadingRecBean implements Serializable{
   
   public String getReadStatus() { return readStatus; }
   public void setReadStatus(String readStatus) { this.readStatus = readStatus; }
-  
-  public int getReadStatusLength() { return readStatusLength; }
-  public void setReadStatusLength(int readStatusLength) { this.readStatusLength = readStatusLength; }
   
   
 }
