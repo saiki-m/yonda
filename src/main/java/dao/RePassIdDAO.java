@@ -7,8 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import beans.AccountBean;
 
@@ -17,12 +15,12 @@ public class RePassIdDAO {
   private final String JDBC_URL = "jdbc:mysql://localhost:3306/yonda";
   private final String DB_USER = "root";
   private final String DB_PASS = "moo0921too";
-
   
-  public List<AccountBean> findAccountID(AccountBean account) {
+  //63行目の「return accountID」ができるよう初期設定しておく。
+  AccountBean accountID = null;
+  
+  public AccountBean findAccountID(AccountBean account) {
 	  
-    List<AccountBean> accountIDList = new ArrayList<>();
-    
 	//JDBCドライバを読み込む
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -48,12 +46,10 @@ public class RePassIdDAO {
       // SELECTを実行し、結果表を取得
       ResultSet rs = pStmt.executeQuery();
       
-	      // 結果表に格納されたレコードの内容を
-	      // empListに追加
+	      // 結果表に格納されたレコードの内容をaccountIDに追加 
 	      while (rs.next()) {
 	        int ID = rs.getInt("アカウントID");
-	        AccountBean account3 = new AccountBean(ID);
-	        accountIDList.add(account3);
+	        accountID = new AccountBean(ID);
 	      }
     }  
       //tryの中でエラーが出たら、catchのみ実行する
@@ -63,7 +59,6 @@ public class RePassIdDAO {
     }
     
   //アカウントIDを取得できたとき
-  return accountIDList;      //accountIDListリストにaccount3が1つ格納されている。
-                           //account3インスタンスの中にアカウントIDが入っている状態。
+  return accountID;      //accountIDインスタンスにアカウントIDが入っている状態。
   }
 }
