@@ -25,7 +25,7 @@ public class AccountEntry extends HttpServlet {
     
     //Accountインスタンスaccountに入力内容を保存
     AccountBean account = new AccountBean(name, password, mailAd, secret_q);
-    
+     
     AccountEntryDAO dao = new AccountEntryDAO();
     boolean newAccount = dao.create(account);   //dao.create(account)がTrueで、アカウント登録される。
 	
