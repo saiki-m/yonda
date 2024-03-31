@@ -5,7 +5,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import beans.AccountBean;
 import dao.RePassIdDAO;
@@ -34,11 +33,11 @@ public class RePassId extends HttpServlet {
     
     //データベースに接続し、該当するアカウントIDを取得。
     RePassIdDAO dao = new RePassIdDAO();
-	List<AccountBean> accountID = dao.findAccountID(account);
+	AccountBean accountID = dao.findAccountID(account);
 	
 	// アカウントIDが見つからず、取得できなかったとき。
 	// 失敗
-	if (accountID.isEmpty()) { 
+	if (accountID == null) { 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/rePassIdFailure.jsp");
         dispatcher.forward(request, response); 
 	}
@@ -48,7 +47,7 @@ public class RePassId extends HttpServlet {
     else {
     	//セッションスコープに保存
     	HttpSession session = request.getSession();
-    	session.setAttribute("accountID111", accountID.get(0));  //accountID.get(0)にあるaccount3インスタンスを保存。
+    	session.setAttribute("accountID111", accountID);
     	
     	//リダイレクト
     	response.sendRedirect("http://localhost:8080/yonda/rePass.jsp");    
