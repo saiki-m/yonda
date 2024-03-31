@@ -36,7 +36,7 @@ public class RePassDAO {
       
       //WHERE文の?に代入
       pStmt.setString(1, account.getPassword());
-      pStmt.setInt(2, account2.getAccountId());
+      pStmt.setInt(2, account2.getAccountID());
       
       pStmt.executeUpdate();
       conn.commit();

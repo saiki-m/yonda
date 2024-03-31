@@ -7,8 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import beans.AccountBean;
 
@@ -19,10 +17,14 @@ public class LoginDAO {
   private final String DB_PASS = "moo0921too";
 
   
-  public List<AccountBean> findAccountID(AccountBean account) {
+//６５行目の「return accountID」ができるよう初期設定しておく。
+  AccountBean accountID = null;
+  
+  
+  public AccountBean findAccountID(AccountBean account) {
 	  
-    List<AccountBean> accountIDList = new ArrayList<>();
-	//JDBCドライバを読み込む
+	  
+    //JDBCドライバを読み込む
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
     }
@@ -48,22 +50,21 @@ public class LoginDAO {
       // SELECTを実行し、結果表を取得
       ResultSet rs = pStmt.executeQuery();
       
-	      // 結果表にあるアカウントIDをaccount2インスタンスに保存して、
-	      // accountIDListに追加
+	      // 結果表にあるアカウントIDをaccountIDインスタンスに保存。
 	      while (rs.next()) {
 	        int ID = rs.getInt("アカウントID");
-	        AccountBean account2 = new AccountBean(ID);
-	        accountIDList.add(account2);
+	          accountID = new AccountBean(ID);
 	      }
+	      
     }  
       //tryの中でエラーが出たら、catchのみ実行する
     catch (SQLException e) {
       e.printStackTrace();
-      return null;       //Login.javaの33行目、dao.findAccountID(account)にnullが入る。
-    }                    //accountIDにnullが入ってログイン失敗となる。
+    return null;   //Login.javaの35行目、dao.findAccountID(account)にnullが入る。
+    }                
     
   //アカウントIDを取得できたとき
-  return accountIDList;   //accountIDListリストにaccount2が1つ格納されている。
-                          //account2インスタンスの中にアカウントIDが入っている状態。
+  return accountID;   //accountIDインスタンスにアカウントIDが入っている状態。
+                          
   }
 }

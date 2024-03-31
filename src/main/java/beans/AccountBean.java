@@ -50,7 +50,7 @@ public class AccountBean implements Serializable{
   }
   
   //ゲッターとセッター
-  public int getAccountId() { return accountID; }
+  public int getAccountID() { return accountID; }
   public void setAccountID(int accountID) { this.accountID = accountID; }
   
   public String getName() { return name; }
