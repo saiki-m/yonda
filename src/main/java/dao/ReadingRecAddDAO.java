@@ -18,9 +18,9 @@ public class ReadingRecAddDAO {
   private final String DB_USER = "root";
   private final String DB_PASS = "moo0921too";
 
-  
-  public boolean create(ReadingRecBean readingRec) {
-	  
+  //本棚に本を追加
+  public boolean create(ReadingRecBean rec) {
+		
 	//JDBCドライバを読み込む
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -39,16 +39,16 @@ public class ReadingRecAddDAO {
       PreparedStatement pStmt = conn.prepareStatement(sql);
       
       //WHERE文の?に代入
-      pStmt.setString(1, readingRec.getTitle());
-      pStmt.setString(2, readingRec.getAuthor());
-      pStmt.setString(3, readingRec.getReadStatus());
+      pStmt.setString(1, rec.getTitle());
+      pStmt.setString(2, rec.getAuthor());
+      pStmt.setString(3, rec.getReadStatus());
       
       // INSERT文を実行（resultには追加された行数が代入される）
       int result = pStmt.executeUpdate();
       if (result != 1) {
         return false;
       }
-	      
+            
     }  
       //try文の中でエラーが出たとき実行する
     catch (SQLException e) {
@@ -60,6 +60,7 @@ public class ReadingRecAddDAO {
     return true;
   }
   
+  //読書記録の一覧を取得
   public List<ReadingRecBean> findAll() {
 	    List<ReadingRecBean> readingRecList = new ArrayList<>();
   
@@ -82,13 +83,13 @@ public class ReadingRecAddDAO {
 	        ResultSet rs = pStmt.executeQuery();
 
 	        // 結果表に格納されたレコードの内容を
-	        // readingRec2インスタンスに設定し、readingRecListインスタンスに追加
+	        // record2インスタンスに設定し、readingRecListインスタンスに追加
 	        while (rs.next()) {
 	          String title = rs.getString("タイトル");
 	          String author = rs.getString("作者");
 	          String readStatus = rs.getString("読書状況");
-	          ReadingRecBean readingRec2 = new ReadingRecBean(title, author, readStatus);
-	          readingRecList.add(readingRec2);
+	          ReadingRecBean record2 = new ReadingRecBean(title, author, readStatus);
+	          readingRecList.add(record2);
 	        }
 	    }   catch (SQLException e) {
 	          e.printStackTrace();

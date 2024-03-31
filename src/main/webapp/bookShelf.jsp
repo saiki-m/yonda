@@ -6,7 +6,7 @@
 <%@ page import="java.util.List"%>
     
 <%
-//セッションスコープに保存されたデータを取得
+//Login.javaでセッションスコープに保存したデータを取得
  List<ReadingRecBean> readingRecList = (List<ReadingRecBean>)session.getAttribute("readingRecList");
 %>
 
