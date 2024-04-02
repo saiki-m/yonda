@@ -10,28 +10,18 @@ import java.sql.SQLException;
 
 import beans.AccountBean;
 
-public class LoginDAO {
-  // データベース接続に使用する情報
-  private final String JDBC_URL = "jdbc:mysql://localhost:3306/yonda";
-  private final String DB_USER = "root";
-  private final String DB_PASS = "moo0921too";
-
+//ConfigDB.javaのConfigDBクラスを継承。
+//JDBC_URL、DB_USER、DB_PASSがLoginDAOクラスで使えるようになる。
+public class LoginDAO extends ConfigDB{
   
-//６５行目の「return accountID」ができるよう初期設定しておく。
+  //６５行目の「return accountID」ができるよう初期設定しておく。
   AccountBean accountID = null;
   
   
   public AccountBean findAccountID(AccountBean account) {
-	  
-	  
-    //JDBCドライバを読み込む
-    try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-    }
-    //JDBCドライバが読み込めない（try文の中でエラーが出た）とき実行する    
-    catch (ClassNotFoundException e) {
-        throw new IllegalStateException("JDBCドライバを読み込めませんでした");
-    }
+	 
+	//親クラスConfigDBのメソッドを利用
+	ReadJDBC_Driver();
     
     // データベースへ接続
     try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {

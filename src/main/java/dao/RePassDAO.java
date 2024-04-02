@@ -8,23 +8,13 @@ import java.sql.SQLException;
 
 import beans.AccountBean;
 
-public class RePassDAO {
-  // データベース接続に使用する情報
-  private final String JDBC_URL = "jdbc:mysql://localhost:3306/yonda";
-  private final String DB_USER = "root";
-  private final String DB_PASS = "moo0921too";
-
+public class RePassDAO extends ConfigDB{
   
+	
   public void rePass(AccountBean account, AccountBean account2) {
 	   
-	//JDBCドライバを読み込む
-    try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-    }
-    //JDBCドライバが読み込めないとき実行する    
-    catch (ClassNotFoundException e) {
-        throw new IllegalStateException("JDBCドライバを読み込めませんでした");
-    }
+	//親クラスConfigDBのメソッドを利用
+		ReadJDBC_Driver();
     
     // データベースへ接続
     try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
