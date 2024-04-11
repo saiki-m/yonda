@@ -14,7 +14,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/RePassId")
 public class RePassId extends HttpServlet {
@@ -45,12 +44,13 @@ public class RePassId extends HttpServlet {
 	//アカウントIDが見つかったとき
     //パスワード再設定画面へ
     else {
-    	//セッションスコープに保存
-    	HttpSession session = request.getSession();
-    	session.setAttribute("accountID111", accountID);
+    	//リクエストスコープに保存
     	
-    	//リダイレクト
-    	response.sendRedirect("http://localhost:8080/yonda/rePass.jsp");    
+    	request.setAttribute("accountID", accountID);
+    	
+   
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/rePass.jsp");
+        dispatcher.forward(request, response);    
     }
 	
   }

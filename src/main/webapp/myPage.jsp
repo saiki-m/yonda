@@ -59,7 +59,7 @@
     	<div class="ranking-content">4位　ｓｐｒｉｎｇ　恩田陸</div>
     	<div class="ranking-content">5位　きみのお金は誰のため: ボスが教えてくれた「お金の謎」と「社会のしくみ」　田内学</div>
 
-	<a href="logout.jsp" class="logout-btn">ログアウト</a>	
+	<a href="LogOut" class="logout-btn">ログアウト</a>	
   </main>
 </body>
 </html>
