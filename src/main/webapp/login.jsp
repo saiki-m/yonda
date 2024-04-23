@@ -11,15 +11,7 @@
 
 <body>
   <header>
-    <h1>
-      <a href="index.jsp">yonda！</a>
-    </h1>
-    <nav>
-      <ul>
-        <li><a href="bbs.jsp">掲示板</a></li>
-        <li><a href="hontaiNews.jsp">本屋大賞通信</a></li>
-      </ul>
-    </nav>
+    <jsp:include page = "header.jsp" /> 
   </header>
   <main>
     <div class="cert-container">
